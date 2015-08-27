@@ -18,6 +18,8 @@ $(document).ready(function(){
     $(element).addClass('accordion-section');
     $('.article-section__title', element)
       .addClass('accordion-section__title')
+      .wrapInner('<button class="accordion-section__button"></button>');
+    $('.accordion-section__button', element)
       .attr({
         'tabindex': tabindex,
         'role':'tab',
@@ -41,7 +43,9 @@ $(document).ready(function(){
     $(element).removeClass('accordion-section');
     $('.article-section__title', element)
       .removeClass('accordion-section__title')
-      .removeAttr('tabindex role aria-controls id aria-selected aria-expanded');
+      .text($('.article-section__title', element).text());
+    // remove button html
+    $('.article-section__button').remove();
     $('.article-section__content', element)
       .removeClass('accordion-section__content')
       .removeAttr('id aria-labeledby role tabindex aria-hidden');
